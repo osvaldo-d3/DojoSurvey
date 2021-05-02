@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Says</title>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>And the survey saaays!</h1>
+    <nav>
+        <a href='/'>Home</a>
+        <a href='about/'>About page</a> 
+        <a href='form/'>Sign up form</a>
+    </nav>
+    <h2>Welcome to {{surveyName}}, we are located in {{surveyLocation}}</h2>
+    <h3>We have the following surveys here:</h3>
+    <ul>
+        {% for types in surveyTypes %}
+            <li>{{types}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
