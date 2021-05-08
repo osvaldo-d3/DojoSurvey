@@ -13,10 +13,11 @@
         <a href='/'>Home</a>
         <a href='/about/'>About page</a> 
         <a href='/form/'>Sign up form</a>
+        <a href='/ninjcoin'>The ninjcoin</a>
     </nav>
     <form action="/form/" method='post'>
         {% csrf_token %}
-        <p>Name: <input name='memberName' type='text'></p>
+        <p>Name: <input name='memberName' id='memberName' type='text'></p>
         <button type='submit'>Submit</button>
     </form>
 </body>

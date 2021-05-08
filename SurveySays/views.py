@@ -1,4 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
+import random
+COINS = {
+    "gold": (4,9),
+    "silver": (2,7),
+    "bronze": (10,20),
+    "plastic": (5,15),
+}
 
 def index(request):
     context = {
@@ -33,18 +40,43 @@ def form(request):
     return render(request, 'surveyForm.html')
 
 
-def newMember(request):
+def newMembers(request):
     if request.method == 'GET':
         return redirect('/form/')
     request.session['results'] = {
         'memberName': request.POST['memberName'],
     }
-    return redirect('/results/')
+    return redirect('/results')
 
 def results(request):
     context = {
-        'memberName': request.session['memberName'],
+        'results': request.session['results'],
     }
     return render(request, 'results.html', context)
+
+def theCoin(request):
+    if not "price" in request.session:
+        request.session['price'] = 0
+    return render(request, 'NinjCoin.html')
+
+def reset(request):
+    request.session.clear()
+    return redirect('/ninjcoin')
+
+def purchase(request):
+    if request.method == 'GET':
+        return redirect('/ninjcoin/')
+
+    itemName = request.POST['categories']
+    categories = COINS[itemName]
+
+    currTotal = random.randint(categories[0], categories[1])
+
+    result = 'total'
+
+    request.session['price'] += currTotal
+    return redirect('/ninjcoin/')
+
+    
 
 # Create your views here.

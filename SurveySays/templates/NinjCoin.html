@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NinjCoin</title>
+    {% load static %}
+    <link rel='stylesheet' href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome to Ninjcoin!</h1>
+    <nav>
+        <a href='/'>Home</a>
+        <a href='/about/'>About page</a> 
+        <a href='/form/'>Sign up form</a>
+        <a href='/ninjcoin'>The ninjcoin</a>
+    </nav>
+    <h3>Coin Totals: <input type='text' disabled value='{{request.session.price}}'></h3>
+    <a href='/reset'><button>Reset</button></a>
+    <div class='items'>
+         <h4>Gold</h4>
+        <p>4-9 coins</p>
+        <form action='/purchase/' method='post'>
+            {% csrf_token %}
+            <input type='hidden' name='categories' value='gold'>
+            <button>Purchase Coin</button>
+        </form>
+    </div>
+
+    <div class='items'>
+        <h4>Silver</h4>
+       <p>2-7 coins</p>
+       <form action='/purchase/' method='post'>
+           {% csrf_token %}
+           <input type='hidden' name='categories' value='silver'>
+           <button>Purchase Silver Coin</button>
+       </form>
+   </div>
+
+   <div class='items'>
+    <h4>Bronze</h4>
+   <p>10-20 coins</p>
+   <form action='/purchase/' method='post'>
+       {% csrf_token %}
+       <input type='hidden' name='categories' value='bronze'>
+       <button>Purchase Bronze Coin</button>
+   </form>
+</div>
+
+<div class='items'>
+    <h4>Plastic</h4>
+   <p>5-15 coins</p>
+   <form action='/purchase/' method='post'>
+       {% csrf_token %}
+       <input type='hidden' name='categories' value='plastic'>
+       <button>Purchase Plastic Coin</button>
+   </form>
+</div>
+</body>
+</html>
